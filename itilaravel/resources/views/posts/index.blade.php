@@ -19,10 +19,10 @@
             <tbody>
             @foreach ($allPosts as $post)
               <tr class="mytr">
-              <td>{{ $post['id'] }}</th>
-                <td>{{ $post['title'] }}</td>
-                <td>{{ $post['posted_by'] }}</td>
-                <td>{{ $post['created_at'] }}</td>
+              <td>{{ $post->id }}</th>
+                <td>{{ $post->title }}</td>
+                <td>{{ $post->posted_by }}</td>
+                <td>{{ $post->created_at }}</td>
                 <td>
                     <a href="{{ route('posts.show', ['post' => $post['id']]) }}" class="btn btn-info">View</a>
                     <x-button type="secondary" text="edit">edit</x-button>
