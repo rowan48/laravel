@@ -697,7 +697,14 @@ use Carbon\Carbon;
                             <li>
                                 <div class="info bg-light">
                                     <p>Posted on:</p>
-                                    <strong>{{ carbon::parse($post->created_at)->isoFormat('MMMM Do YYYY, h:mm:ss a') }}</strong></div>
+                                    @if($post->created_at===null)
+                                    <strong>{{ carbon::parse($post->created_at)->isoFormat('MMMM Do YYYY, h:mm:ss a') }}</strong>
+                                    @else
+                                    <strong>2021-10-10</strong></div>
+                                    @endif
+                                    </div>
+
+
                             </li>
                             <li>
                             <div>
@@ -712,7 +719,8 @@ use Carbon\Carbon;
                                     @else
                                     <p>Comments:no comments yet</p>
                                     @endif
-                                    <strong>127</strong></div>
+                                    <strong>127</strong>
+                                </div>
                             </li>
                         </ul>
                     </div>
