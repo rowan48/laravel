@@ -16,14 +16,6 @@ class PostController extends Controller
 
         $posts = Post::all();
        $posts= Post::paginate(15);
-
-        // $data=User::all();
-        // User::create([
-        //     'name' => $data['name'],
-        //     'email' => $data['email'],
-        //     'password' => $data['password'],
-        // ]);
-
         return view(
             'posts.index',
             [
@@ -55,8 +47,6 @@ class PostController extends Controller
     public function store()
     {
         $data = request()->all();
-        // dd($data['created_by']);
-
         Post::create([
             'title' => $data['title'],
             'description' => $data['description'],
@@ -68,34 +58,15 @@ class PostController extends Controller
     public function show($postId)
     {
         $user = User::where('id', $postId)->first();
-        // dd($postId);
-
-
         $post = Post::where('id', $postId)->first();
-        // $comment=Comment::where('user_id',$postId)->first();
-        // dd($post);
-        // User::create([
-        //     'name' => 'rowan',
-        //     'email' => 'rowanahmed@gmail.com',
-        //     'password'=>'rowan',
-        // ]);
-
-
-        // dd($post);
+        $comment=Comment::where('user_id',$postId)->first();
+        // dd($comment);
         return view('posts.show', [
             'post' => $post,
             'user' => $user,
-            // 'comment'=>"$comment",
+            'comment'=>$comment,
 
         ]);
-        // $post = Post::find($postId);
-        // return $postId;
-        /*
-                    'postId'=>$postId,
-            'post'=>$post,
-            'email'=>$data['email'],
-            'name'=>$data['name']
-        */
     }
     public function edit()
     {

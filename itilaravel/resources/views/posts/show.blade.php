@@ -707,7 +707,11 @@ use Carbon\Carbon;
                             </li>
                             <li>
                                 <div class="info bg-light">
-                            
+                                @if($comment)
+                                    <p>Comments:{{$comment->comment}}</p>
+                                    @else
+                                    <p>Comments:no comments yet</p>
+                                    @endif
                                     <strong>127</strong></div>
                             </li>
                         </ul>

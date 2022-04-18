@@ -13,7 +13,8 @@ class Post extends Model
         'description',
         'user_id',
         'name',
-        'email'
+        'email',
+        'created_by',
     ];
 
 
