@@ -4,23 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Comment;
+
 
 class PostController extends Controller
 {
     public $posts = [];
-    public $i=0;
     public function index()
     {
         
 
         $posts = Post::all();
-       $posts= Post::paginate(15+$this->i);
-       if($this->i>=500){
-           $i=0;
-    }
-       else{      
-            $this->i+=15; 
-       }
+       $posts= Post::paginate(15);
 
         // $data=User::all();
         // User::create([
@@ -60,12 +55,12 @@ class PostController extends Controller
     public function store()
     {
         $data = request()->all();
-        // dd($data);
+        // dd($data['created_by']);
 
         Post::create([
             'title' => $data['title'],
             'description' => $data['description'],
-            'user_id' => $data['post_creator'],
+            'created_by' => "1",
         ]);
         return to_route('posts.index');
     }
@@ -73,10 +68,11 @@ class PostController extends Controller
     public function show($postId)
     {
         $user = User::where('id', $postId)->first();
-        // dd($user);
+        // dd($postId);
 
 
         $post = Post::where('id', $postId)->first();
+        // $comment=Comment::where('user_id',$postId)->first();
         // dd($post);
         // User::create([
         //     'name' => 'rowan',
@@ -89,6 +85,7 @@ class PostController extends Controller
         return view('posts.show', [
             'post' => $post,
             'user' => $user,
+            // 'comment'=>"$comment",
 
         ]);
         // $post = Post::find($postId);

@@ -1,6 +1,3 @@
-<?php
-use Carbon\Carbon;
-?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -677,6 +674,9 @@ blockquote {
     </style>
 </head>
 <body>
+<?php
+use Carbon\Carbon;
+?>
 <div class="container">
     <div class="col-md-12 col-lg-12">
         <article class="post vt-post w-100">
@@ -707,7 +707,7 @@ blockquote {
                             </li>
                             <li>
                                 <div class="info bg-light">
-                                    <p>Comments:</p>
+                            
                                     <strong>127</strong></div>
                             </li>
                         </ul>

@@ -48,7 +48,8 @@ use Carbon\Carbon;
     @endforeach
   </tbody>
 </table>
-<div class="pagination-wrap">
+{{ $allPosts->links() }}
+<!-- <div class="pagination-wrap">
             <nav aria-label="Page navigation example">
               <ul class="pagination">
                 <li class="page-item"><a class="page-link" href="/posts">Previous</a></li>
@@ -59,5 +60,5 @@ use Carbon\Carbon;
               </ul>
             </nav>
         </div>
-        <div class="clearfix"></div>
+        <div class="clearfix"></div> -->
 @endsection
