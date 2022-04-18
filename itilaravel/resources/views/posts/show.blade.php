@@ -683,7 +683,7 @@ blockquote {
             <div class="row">
                 <div class="col-xs-12 col-sm-5 col-md-5 col-lg-4">
                     <div class="post-type post-img ">
-                        <a href="#"><img  class="w-25" src="https://bootdey.com/img/Content/avatar/avatar5.png" style="width: 50%;" class="img-responsive" alt="image post"></a>
+                        <a href="#"><img  class="w-25" src="https://bootdey.com/img/Content/avatar/avatar{{rand(1,6)}}.png" style="width: 50%;" class="img-responsive" alt="image post"></a>
                     </div>
                     <div>
                         <div class="info bg-light">
@@ -700,6 +700,12 @@ blockquote {
                                     <strong>{{ carbon::parse($post->created_at)->isoFormat('MMMM Do YYYY, h:mm:ss a') }}</strong></div>
                             </li>
                             <li>
+                            <div>
+                                    <p><b>Name:</b>{{$user->name}}</p>
+                                    <p><b>Email:</b>{{$user->email}}</p>
+                               </div>
+                            </li>
+                            <li>
                                 <div class="info bg-light">
                                     <p>Comments:</p>
                                     <strong>127</strong></div>
@@ -709,18 +715,7 @@ blockquote {
                 </div>
             </div>
         </article>
-        <div class="pagination-wrap">
-            <nav aria-label="Page navigation example">
-              <ul class="pagination">
-                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-              </ul>
-            </nav>
-        </div>
-        <div class="clearfix"></div>
+
     </div>
 </div>
     

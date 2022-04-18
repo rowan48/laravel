@@ -48,4 +48,16 @@ use Carbon\Carbon;
     @endforeach
   </tbody>
 </table>
+<div class="pagination-wrap">
+            <nav aria-label="Page navigation example">
+              <ul class="pagination">
+                <li class="page-item"><a class="page-link" href="/posts">Previous</a></li>
+                <li class="page-item"><a class="page-link" href="/posts">1</a></li>
+                <li class="page-item"><a class="page-link" href="/posts">2</a></li>
+                <li class="page-item"><a class="page-link" href="/posts">3</a></li>
+                <li class="page-item"><a class="page-link" href="/posts">Next</a></li>
+              </ul>
+            </nav>
+        </div>
+        <div class="clearfix"></div>
 @endsection

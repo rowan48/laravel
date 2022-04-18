@@ -8,10 +8,20 @@ use App\Models\User;
 class PostController extends Controller
 {
     public $posts = [];
+    public $i=0;
     public function index()
     {
+        
 
         $posts = Post::all();
+       $posts= Post::paginate(15+$this->i);
+       if($this->i>=500){
+           $i=0;
+    }
+       else{      
+            $this->i+=15; 
+       }
+
         // $data=User::all();
         // User::create([
         //     'name' => $data['name'],
@@ -30,12 +40,12 @@ class PostController extends Controller
     {
         $users = User::all();
         // dd($users);
-        User::create([
-            'name' => $users['name'],
-            'email' => $users['email'],
+        // User::create([
+        //     'name' => $users['name'],
+        //     'email' => $users['email'],
 
 
-        ]);
+        // ]);
         return view('posts.create', [
             'users' => $users,
         ]);
@@ -50,7 +60,7 @@ class PostController extends Controller
     public function store()
     {
         $data = request()->all();
-        dd($data);
+        // dd($data);
 
         Post::create([
             'title' => $data['title'],
@@ -67,6 +77,15 @@ class PostController extends Controller
 
 
         $post = Post::where('id', $postId)->first();
+        // dd($post);
+        // User::create([
+        //     'name' => 'rowan',
+        //     'email' => 'rowanahmed@gmail.com',
+        //     'password'=>'rowan',
+        // ]);
+
+
+        // dd($post);
         return view('posts.show', [
             'post' => $post,
             'user' => $user,
