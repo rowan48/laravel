@@ -674,9 +674,6 @@ blockquote {
     </style>
 </head>
 <body>
-<?php
-use Carbon\Carbon;
-?>
 <div class="container">
     <div class="col-md-12 col-lg-12">
         <article class="post vt-post w-100">
@@ -697,8 +694,8 @@ use Carbon\Carbon;
                             <li>
                                 <div class="info bg-light">
                                     <p>Posted on:</p>
-                                    @if($post->created_at===null)
-                                    <strong>{{ carbon::parse($post->created_at)->isoFormat('MMMM Do YYYY, h:mm:ss a') }}</strong>
+                                    @if($post->created_at != null)
+                                    <strong>{{ \Illuminate\Support\carbon::parse($post->created_at)->isoFormat('MMMM Do YYYY, h:mm:ss a') }}</strong>
                                     @else
                                     <strong>2021-10-10</strong></div>
                                     @endif

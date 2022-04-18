@@ -26,13 +26,6 @@ class PostController extends Controller
     public function create()
     {
         $users = User::all();
-        // dd($users);
-        // User::create([
-        //     'name' => $users['name'],
-        //     'email' => $users['email'],
-
-
-        // ]);
         return view('posts.create', [
             'users' => $users,
         ]);

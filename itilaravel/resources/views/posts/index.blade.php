@@ -1,6 +1,3 @@
-<?php
-use Carbon\Carbon;
-?>
 @extends('layouts.app')
 
 @section('title') This Is Index Page @endsection
@@ -30,7 +27,7 @@ use Carbon\Carbon;
       <td>Not Found</td>
       @endif
 
-      <td>{{ carbon::parse($post->created_at)->format("Y-m-d") }}</td>
+      <td>{{\Illuminate\Support\carbon::parse($post->created_at)->format("Y-m-d") }}</td>
       <td>
         <span>
         <a href="{{ route('posts.show', ['post' => $post['id']]) }}" class="btn btn-info">View</a>
@@ -41,24 +38,10 @@ use Carbon\Carbon;
           <button onclick="return confirm('are you sure?')" class="btn btn-danger">Delete</button>
         </form>
         </span>
-        <!-- <a href="#" class="btn btn-primary">Edit</a> -->
-        <!-- <a href="" class="btn btn-danger delete-user">Delete</a> -->
       </td>
     </tr>
     @endforeach
   </tbody>
 </table>
 {{ $allPosts->links() }}
-<!-- <div class="pagination-wrap">
-            <nav aria-label="Page navigation example">
-              <ul class="pagination">
-                <li class="page-item"><a class="page-link" href="/posts">Previous</a></li>
-                <li class="page-item"><a class="page-link" href="/posts">1</a></li>
-                <li class="page-item"><a class="page-link" href="/posts">2</a></li>
-                <li class="page-item"><a class="page-link" href="/posts">3</a></li>
-                <li class="page-item"><a class="page-link" href="/posts">Next</a></li>
-              </ul>
-            </nav>
-        </div>
-        <div class="clearfix"></div> -->
 @endsection

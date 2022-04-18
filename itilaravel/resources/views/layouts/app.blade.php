@@ -43,9 +43,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 <script>
     $('.delete-user').click(function(e){
-        e.preventDefault() // Don't post the form, unless confirmed
+        e.preventDefault() 
         if (confirm('Are you sure?')) {
-            // Post the form
             e.target.parentNode.parentNode.parentNode.remove();
         }
     });
