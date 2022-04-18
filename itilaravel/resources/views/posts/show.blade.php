@@ -1,3 +1,6 @@
+<?php
+use Carbon\Carbon;
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -668,6 +671,9 @@ blockquote {
 .pagination {
     margin: 0px;
 }
+.hidden{
+    display: none;
+}
     </style>
 </head>
 <body>
@@ -677,36 +683,21 @@ blockquote {
             <div class="row">
                 <div class="col-xs-12 col-sm-5 col-md-5 col-lg-4">
                     <div class="post-type post-img ">
-                        <a href="#"><img  class="w-25" src="https://bootdey.com/img/Content/avatar/avatar1.png" style="width: 50%;" class="img-responsive" alt="image post"></a>
+                        <a href="#"><img  class="w-25" src="https://bootdey.com/img/Content/avatar/avatar5.png" style="width: 50%;" class="img-responsive" alt="image post"></a>
                     </div>
                     <div>
                         <div class="info bg-light">
-                            <p>Post info</p>
-                       
-                            <div>
-                                <p><b>Decription:</b></p>
-                                <p>with supporting text below as a natural lead </p>
-
-                            </div>
-                        </div>
-                        <div class="info bg-light">
                             <p>Post creator info</p>
                        
-                            <div>
-                                <p><b>Name:</b> Ahmed</p>
-                                <p><b>Email:</b> Ahmed@gmail.com</p>
-                            </div>
+                         
                         </div>
-
-                        
-
                     </div>
                     <div class="author-info author-info-2">
                         <ul class="list-inline">
                             <li>
                                 <div class="info bg-light">
                                     <p>Posted on:</p>
-                                    <strong>Mar 21, 2021</strong></div>
+                                    <strong>{{ carbon::parse($post->created_at)->isoFormat('MMMM Do YYYY, h:mm:ss a') }}</strong></div>
                             </li>
                             <li>
                                 <div class="info bg-light">
@@ -717,101 +708,6 @@ blockquote {
                     </div>
                 </div>
             </div>
-        </article>
-        
-        
-        
-        <article class="post vt-post">
-            <div class="row">
-                <div class="col-xs-12 col-sm-5 col-md-5 col-lg-4">
-                    <div class="post-type post-img">
-                        <a href="#"><img src="https://bootdey.com/img/Content/avatar/avatar7.png" style="width: 50%;"  class="img-responsive" alt="image post"></a>
-                    </div>
-                    <div>
-                        <div class="info bg-light">
-                            <p>Post info</p>
-                       
-                            <div>
-                                <p><b>Decription:</b></p>
-                                <p>with supporting text below as a natural lead </p>
-
-                            </div>
-                        </div>
-                        <div class="info bg-light">
-                            <p>Post creator info</p>
-                       
-                            <div>
-                                <p><b>Name:</b> Ahmed</p>
-                                <p><b>Email:</b> Ahmed@gmail.com</p>
-                            </div>
-                        </div>
-
-                        
-
-                    </div>
-                    <div class="author-info author-info-2">
-                        <ul class="list-inline">
-                            <li>
-                                <div class="info bg-light">
-                                    <p>Posted on:</p>
-                                    <strong>Mar 21, 2015</strong></div>
-                            </li>
-                            <li>
-                                <div class="info bg-light">
-                                    <p>Comments:</p>
-                                    <strong>127</strong></div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-        </article>
-        
-        
-        
-        <article class="post vt-post">
-            <div class="row">
-                <div class="col-xs-12 col-sm-5 col-md-5 col-lg-4">
-                    <div class="post-type post-img">
-                        <a href="#"><img src="https://bootdey.com/img/Content/avatar/avatar6.png" style="width: 50%;"  class="img-responsive" alt="image post"></a>
-                    </div>
-                    <div>
-                        <div class="info bg-light">
-                            <p>Post info</p>
-                       
-                            <div>
-                                <p><b>Decription:</b></p>
-                                <p>with supporting text below as a natural lead </p>
-
-                            </div>
-                        </div>
-                        <div class="info bg-light">
-                            <p>Post creator info</p>
-                       
-                            <div>
-                                <p><b>Name:</b> Ahmed</p>
-                                <p><b>Email:</b> Ahmed@gmail.com</p>
-                            </div>
-                        </div>
-
-                        
-
-                    </div>
-                    <div class="author-info author-info-2">
-                        <ul class="list-inline">
-                            <li>
-                                <div class="info bg-light">
-                                    <p>Posted on:</p>
-                                    <strong>Mar 21, 2015</strong></div>
-                            </li>
-                            <li>
-                                <div class="info bg-light">
-                                    <p>Comments:</p>
-                                    <strong>127</strong></div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
         </article>
         <div class="pagination-wrap">
             <nav aria-label="Page navigation example">
