@@ -130,12 +130,12 @@
 </head>
 
 <body>
-    
+
     <form class="form-block" method="post" action="{{route('posts.comment',['post'=>$post['id']])}}">
-    @csrf
+        @csrf
 
         <div class="container">
-    
+
             <div class="be-comment-block">
                 <h1 class="comments-title">Comments (count)</h1>
                 @foreach ($comment as $onecomment)

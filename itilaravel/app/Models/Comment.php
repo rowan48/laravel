@@ -13,9 +13,6 @@ class Comment extends Model
         'comments',
         'user_id',
     ];
-    /**
-     * Get the parent commentable model (post or video).
-     */
     public function commentable()
     {
         return $this->morphTo();

@@ -857,7 +857,7 @@
                             </div>
                         </div>
                         <div class="mb-3">
-                            <button type="submit" class="btn btn-success">submit</button>
+                            <button type="submit" class="btn btn-success">comment</button>
                         </div>
                     </div>
                 </div>

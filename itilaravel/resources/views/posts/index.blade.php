@@ -34,7 +34,6 @@
             @csrf
             <button class="btn btn-secondary">Edit</button>
           </form>
-          
           <form method="POST" style="display: inline-block;" action="{{ route('posts.destory',['post' => $post['id']])}}">
             @method("DELETE")
             @csrf
@@ -47,6 +46,6 @@
   </tbody>
 </table>
 <div class="text-dark">
-{{ $allPosts->links() }}
-    </div>
+  {{ $allPosts->links() }}
+</div>
 @endsection
