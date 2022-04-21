@@ -13,6 +13,7 @@ class Post extends Model
         'description',
         'user_id',
         'created_by',
+        
     ];
 
 
@@ -23,7 +24,7 @@ class Post extends Model
 
     public function comments()
     {
-        return $this->morphMany(Comment::class, 'commentable');
+        return $this->hasMany(Comment::class);
     }
 
 

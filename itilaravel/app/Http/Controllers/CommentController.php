@@ -5,34 +5,32 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Comment;
-
-
 class CommentController extends Controller
 {
+    public $i=0;
     public function comment($postID){
-        $data = request()->all(); 
-        $post = Post::where('id', $postID)->first();
-        $post=Post::where('id',$postID)->first();
-
         $post=Post::find($postID);
-
-        $comment= Comment::where('post_id', $postID)
-         ->get();
-        // $comment=$post->comments()->create([
-        //     'body' => $data['comment'],
-        //     'commentable_id' =>$postID ,
-        //     'commentable_type' => "App\Models\Post",
-            
-        // ]);
-
         // dd($post);
-        return view('posts.comment',['comment'=>$comment,
-                                                    'posts'=>$post, 
-    ]);
-        return to_route('posts.comment',[
-            'comment'=>$comment,
-            'posts'=>$post,
+        $data = request()->all(); 
+        // dd($data);
+
+            $comment=$post->comments()->create([
+                'comments' => $data['comment'],
+                'commentable_id' =>$postID ,
+                'commentable_type' => "App\Models\Post",
+                'user_id'=>$data['user_id'],
+                
+            ]);
+
+            //  dd($comment);
+        
+
+        return to_route('posts.show',[
+            'post'=>$postID,
+
         ]);
+
+       
 
     }
     public function storecomment ($postID){
@@ -48,8 +46,10 @@ class CommentController extends Controller
             'updated_at'=>now(),
             'post_id'=>$postID,
         ]);
-        $post = Post::where('id', $postID)->first();
-        return view('posts.comment',['comment'=>$comment,
+        $post = Post::find($postID);
+        $comment= Comment::where('post_id', $postID)->get();
+        return view('posts.comment',[
+        'comment'=>$comment,
         'posts'=>$post, 
         'comment'=>$comment,
 ]); 

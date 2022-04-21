@@ -3,7 +3,7 @@ post
 @section('title')Create @endsection
 
 @section('content')
-      <form method="get" action="{{route('posts.update',['post'=>$post['id']])}}">
+      <form method="post" action="{{route('posts.update',['posts'=>$post['id']])}}">
       @csrf
       @method('put')
         <div class="mb-3">

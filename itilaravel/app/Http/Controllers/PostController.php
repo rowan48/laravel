@@ -51,11 +51,14 @@ class PostController extends Controller
     public function show($postId)
     {
         $user=User::all();
-        $post = Post::where('id', $postId)->first();
-        // $comment=Comment::where('user_id',$postId)->first();
+        // $user=User::find($postId);
+        $post = Post::find($postId);
+        $comments=$post->comments;
         return view('posts.show', [
-            'post' => $post,
-            // 'comment'=>$comment,
+            
+            'post'=>$post,
+            'comments'=>$comments,
+            'users'=>$user,
 
         ]);
     }
@@ -75,6 +78,8 @@ class PostController extends Controller
         ->update(['title' => $data['title'],
         'description' => $data['description'],
         'user_id' => $data['user_id'],]);
+        // return redirect()->route('posts.index');
+
         return to_route('posts.index');
 
         

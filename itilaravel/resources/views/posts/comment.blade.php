@@ -131,7 +131,7 @@
 
 <body>
     
-    <form class="form-block" method="get" action="{{route('comments.storecomment',['posts'=>$posts['id']])}}">
+    <form class="form-block" method="post" action="{{route('posts.comment',['post'=>$post['id']])}}">
     @csrf
 
         <div class="container">

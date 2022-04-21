@@ -8,11 +8,10 @@ class Comment extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'body',
         'commentable_id',
         'commentable_type',
         'comments',
-        'post_id',
+        'user_id',
     ];
     /**
      * Get the parent commentable model (post or video).
@@ -24,5 +23,9 @@ class Comment extends Model
     public function post()
     {
         return $this->belongsTo(Post::class);
+    }
+    public function user(){
+        return $this->belongsTo(User::class);
+
     }
 }

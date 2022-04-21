@@ -14,12 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::table('comments', function (Blueprint $table) {
-            $table->morphs("commentable");
-            // $table->unsignedBigInteger('post_id')->nullable();
-            // $table->foreign('post_id')->references('id')->on('posts');
-        });
+            $table->integer('post_id')->first();
+          });
+        
     }
-    
+
     /**
      * Reverse the migrations.
      *

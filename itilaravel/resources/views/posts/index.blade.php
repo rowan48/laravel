@@ -30,7 +30,7 @@
       <td>
         <span>
           <a href="{{ route('posts.show', ['post' => $post['id']]) }}" class="btn btn-info">View</a>
-          <form method="POST" style="display: inline-block;" action="{{ route('posts.edit',['post' => $post])}}">
+          <form method="get" style="display: inline-block;" action="{{ route('posts.edit',['post' => $post])}}">
             @csrf
             <button class="btn btn-secondary">Edit</button>
           </form>

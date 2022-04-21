@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->text('comments'); //== text column
             $table->morphs("commentable");
-            // $table->unsignedBigInteger('post_id')->nullable();
-            // $table->foreign('post_id')->references('id')->on('posts');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

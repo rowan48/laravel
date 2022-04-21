@@ -1,4 +1,5 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,6 +13,117 @@
         body {
             margin-top: 20px;
             background: #DCDCDC;
+        }
+
+        .be-comment-block {
+            margin-bottom: 50px !important;
+            border: 1px solid #edeff2;
+            border-radius: 2px;
+            padding: 50px 70px;
+            border: 1px solid #ffffff;
+        }
+
+        .comments-title {
+            font-size: 16px;
+            color: #262626;
+            margin-bottom: 15px;
+            font-family: 'Conv_helveticaneuecyr-bold';
+        }
+
+        .be-img-comment {
+            width: 60px;
+            height: 60px;
+            float: left;
+            margin-bottom: 15px;
+        }
+
+        .be-ava-comment {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+        }
+
+        .be-comment-content {
+            margin-left: 80px;
+        }
+
+        .be-comment-content span {
+            display: inline-block;
+            width: 49%;
+            margin-bottom: 15px;
+        }
+
+        .be-comment-name {
+            font-size: 13px;
+            font-family: 'Conv_helveticaneuecyr-bold';
+        }
+
+        .be-comment-content a {
+            color: #383b43;
+        }
+
+        .be-comment-content span {
+            display: inline-block;
+            width: 49%;
+            margin-bottom: 15px;
+        }
+
+        .be-comment-time {
+            text-align: right;
+        }
+
+        .be-comment-time {
+            font-size: 11px;
+            color: #b4b7c1;
+        }
+
+        .be-comment-text {
+            font-size: 13px;
+            line-height: 18px;
+            color: #7a8192;
+            display: block;
+            background: #f6f6f7;
+            border: 1px solid #edeff2;
+            padding: 15px 20px 20px 20px;
+        }
+
+        .form-group.fl_icon .icon {
+            position: absolute;
+            top: 1px;
+            left: 16px;
+            width: 48px;
+            height: 48px;
+            background: #f6f6f7;
+            color: #b5b8c2;
+            text-align: center;
+            line-height: 50px;
+            -webkit-border-top-left-radius: 2px;
+            -webkit-border-bottom-left-radius: 2px;
+            -moz-border-radius-topleft: 2px;
+            -moz-border-radius-bottomleft: 2px;
+            border-top-left-radius: 2px;
+            border-bottom-left-radius: 2px;
+        }
+
+        .form-group .form-input {
+            font-size: 13px;
+            line-height: 50px;
+            font-weight: 400;
+            color: #b4b7c1;
+            width: 100%;
+            height: 50px;
+            padding-left: 20px;
+            padding-right: 20px;
+            border: 1px solid #edeff2;
+            border-radius: 3px;
+        }
+
+        .form-group.fl_icon .form-input {
+            padding-left: 70px;
+        }
+
+        .form-group textarea.form-input {
+            height: 150px;
         }
 
         .content {
@@ -665,6 +777,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="col-md-12 col-lg-12">
@@ -684,12 +797,9 @@
                                 <li>
                                     <div class="info bg-light">
                                         <p>Posted on:</p>
-                                        @if($post)
                                         <strong>{{ \Illuminate\Support\carbon::parse($post->created_at)->isoFormat('MMMM Do YYYY, h:mm:ss a') }}</strong>
-                                        @else
                                         <strong>2021-10-10</strong>
                                     </div>
-                                    @endif
                         </div>
                         </li>
                         <li>
@@ -699,29 +809,73 @@
                             </div>
                         </li>
                         <li>
-                            <div class="info bg-light">
-                                <strong>127</strong>
-                            </div>
                         </li>
                         </ul>
                     </div>
                 </div>
-                <form method="get" action="{{route('posts.comment',['comment'=>$post['id']])}}">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-5 col-md-5 col-lg-4">
-                        <div class="border border-dark w-100 " style="height: 100px;">
-                                @csrf
-                                <button class="btn btn-secondary">comment</button>
-                        </div>
-                    </div>
-                </div>
-                </form>
+
         </div>
         </article>
     </div>
     </div>
 
+    <form class="form-block" method="post" action="{{route('posts.comment',['post'=>$post['id']])}}">
+        @csrf
 
+        <div class="container">
+
+            <div class="be-comment-block">
+                <h1 class="comments-title">Comments (count)</h1>
+                <!--foreach-->
+                <div class="be-comment">
+                    <div class="be-img-comment">
+                        <a href="blog-detail-2.html">
+                            <img src="https://bootdey.com/img/Content/avatar/avatar{{rand(1,6)}}.png" alt="" class="be-ava-comment">
+                        </a>
+                    </div>
+                    @foreach($comments as $comment)
+                    <div class="be-comment-content">
+
+                        <span class="be-comment-name">
+                            <a href="blog-detail-2.html">{{$comment->user->name}}</a>
+                        </span>
+                        <span class="be-comment-time">
+                            <i class="fa fa-clock-o">{{$comment->post->created_at}}</i>
+
+                        </span>
+                        <p class="be-comment-text">
+                            {{$comment->comments}}
+                        </p>
+                    </div>
+                    @endforeach
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 fl_icon">
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <textarea name="comment" class="form-input" required="" placeholder="Your text"></textarea>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-success">submit</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Post Creator</label>
+                        <select name="user_id" class="form-control">
+                            @foreach ($users as $user)
+                            <option value="{{$user->id}}">{{$user->name}}</option>
+                            @endforeach
+
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+
+    </form>
 </body>
 
 </html>
