@@ -13,16 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('comments', function (Blueprint $table) {
-            $table->id();
-            $table->text('comments'); //== text column
+        Schema::table('comments', function (Blueprint $table) {
             $table->morphs("commentable");
             // $table->unsignedBigInteger('post_id')->nullable();
             // $table->foreign('post_id')->references('id')->on('posts');
-            $table->timestamps();
         });
     }
-
+    
     /**
      * Reverse the migrations.
      *
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comments');
+        //
     }
 };

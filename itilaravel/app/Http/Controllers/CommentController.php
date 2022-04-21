@@ -37,7 +37,6 @@ class CommentController extends Controller
     }
     public function storecomment ($postID){
         $data=request()->all();
-        $post = Post::where('id', $postID)->first();
         //dd($post);
         $comment= Comment::where('post_id', $postID)->get();
         $onecomment=Comment::where('post_id', $postID)->first();
@@ -49,6 +48,7 @@ class CommentController extends Controller
             'updated_at'=>now(),
             'post_id'=>$postID,
         ]);
+        $post = Post::where('id', $postID)->first();
         return view('posts.comment',['comment'=>$comment,
         'posts'=>$post, 
         'comment'=>$comment,
