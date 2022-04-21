@@ -13,11 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('posts', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id')->nullable();
- 
+        Schema::create('posts', function (Blueprint $table) {
+            $table->id();
+            $table->string('title'); //== varchar column
+            $table->text('description'); //== text column
+            $table->unsignedBigInteger('user_id')->nullable;
             $table->foreign('user_id')->references('id')->on('users');
-        });
+            $table->timestamps();
+            });
+            
     }
 
     /**
@@ -27,8 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('posts', function (Blueprint $table) {
-            
-        });
+        Schema::dropIfExists('posts');
     }
 };

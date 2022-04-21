@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Post>
  */
-class PostFactory extends Factory
+class CommentFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,9 +18,8 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->text(10),
-            'description' => $this->faker->text(50), 
-            'user_id' => rand(1,8),
+            'comments' => $this->faker->text(1000),
+            'post_id' => rand(1,500),
         ];
     }
 }

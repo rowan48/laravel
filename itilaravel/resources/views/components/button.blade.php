@@ -3,7 +3,7 @@
         @if($type=='primary')
         
         @elseif($type=='secondary')
-        <a href="/posts/edit" class="btn btn-{{$type}}">
+        <a href="{{$link}}" class="btn btn-{{$type}}">
         <span>edit</span>
         </a>
         @elseif($type=='danger')

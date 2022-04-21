@@ -1,57 +1,31 @@
 @extends('layouts.app')
-
-@section('title') This Is Index Page @endsection
-
+post
+@section('title')Create @endsection
 
 @section('content')
-<div class="container">
-    <div class="col-md-12 col-lg-12">
-        <article class="post vt-post w-100">
-            <div class="row">
-                <div class="col-xs-12 col-sm-5 col-md-5 col-lg-4">
-                    <div class="post-type post-img ">
-                        <!-- <a href="#"><img  class="w-25" src="https://bootdey.com/img/Content/avatar/avatar1.png" style="width: 50%;" class="img-responsive" alt="image post"></a> -->
-                    </div>
-                    <div>
-                        <div class="info bg-light">
-                            <p>Title</p>
-                       
-                            <div>
-                                <input type="text">
-                            </div>
-                        </div>
-                        <div class="info bg-light">
-                            <p>Description</p>
-                       
-                            <div>
-                                <input type="text">
-                            </div>
-                        </div>
-                        <div class="info bg-light">
-                            <p>post creator</p>
-                       
-                            <div>
-                                <input type="text">
-                            </div>
-                        </div>
+      <form method="get" action="{{route('posts.update',['post'=>$post['id']])}}">
+      @csrf
+      @method('put')
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Title</label>
+            <input name="title" type="text" class="form-control" id="exampleFormControlInput1" value ="{{$post['title']}}">
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+            <textarea name='description' class="form-control" id="exampleFormControlTextarea1"  rows="3">{{$post['description']}}</textarea>
+          </div>
 
-                        
-
-                    </div>
-                </div>
+          <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Post Creator</label>
+                <select name="user_id" class="form-control">
+                @foreach ($users as $user)
+                    <option value="{{$user->id}}">{{$user->name}}</option>
+                    @endforeach
+                </select>
             </div>
-        </article>
-        
-        
-        
-        
-        
-        
-     
-  
-    </div>
-</div>
 
-
-
+          <div class="mb-3">
+            <button type="submit" class="btn btn-success">Edit Post</button>
+          </div>
+        </form>
 @endsection

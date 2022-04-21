@@ -43,26 +43,41 @@ class PostController extends Controller
         Post::create([
             'title' => $data['title'],
             'description' => $data['description'],
-            'created_by' => "1",
+            'user_id' => $data['user_id'],
         ]);
         return to_route('posts.index');
     }
 
     public function show($postId)
     {
-        $user = User::where('id', $postId)->first();
+        $user=User::all();
         $post = Post::where('id', $postId)->first();
-        $comment=Comment::where('user_id',$postId)->first();
-        // dd($comment);
+        // $comment=Comment::where('user_id',$postId)->first();
         return view('posts.show', [
             'post' => $post,
-            'user' => $user,
-            'comment'=>$comment,
+            // 'comment'=>$comment,
 
         ]);
     }
-    public function edit()
+    public function edit($postId)
     {
-        return view('posts.edit');
+        $users = User::all();
+        $post = Post::where('id', $postId)->first();
+        // dd($post);
+        return view('posts.edit',[
+            'post'=>$post,
+            'users' => $users,
+        ]);
     }
+    public function update($postId){
+        $data = request()->all(); 
+        Post::where('id', $postId)
+        ->update(['title' => $data['title'],
+        'description' => $data['description'],
+        'user_id' => $data['user_id'],]);
+        return to_route('posts.index');
+
+        
+    }
+   
 }

@@ -13,9 +13,10 @@ class Button extends Component
      *
      * @return void
      */
-    public function __construct($type)
+    public function __construct($type ,$link)
     {
         $this->type=$type;
+        $this->link=$link;
 
     }
 
@@ -28,6 +29,7 @@ class Button extends Component
     {
         return view('components.button',[
             'type'=>$this->type,
+            'link'=>$this->link,
         ]);
     }
 }

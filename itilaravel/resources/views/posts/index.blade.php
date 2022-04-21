@@ -26,22 +26,27 @@
       @else
       <td>Not Found</td>
       @endif
-
       <td>{{\Illuminate\Support\carbon::parse($post->created_at)->format("Y-m-d") }}</td>
       <td>
         <span>
-        <a href="{{ route('posts.show', ['post' => $post['id']]) }}" class="btn btn-info">View</a>
-        <x-button type="secondary" text="edit">edit</x-button>
-        <form method="POST" action="{{ route('posts.destory',['post' => $post['id']])}}">
-          @method("DELETE")
-          @csrf
-          <button onclick="return confirm('are you sure?')" class="btn btn-danger">Delete</button>
-        </form>
+          <a href="{{ route('posts.show', ['post' => $post['id']]) }}" class="btn btn-info">View</a>
+          <form method="POST" style="display: inline-block;" action="{{ route('posts.edit',['post' => $post])}}">
+            @csrf
+            <button class="btn btn-secondary">Edit</button>
+          </form>
+          
+          <form method="POST" style="display: inline-block;" action="{{ route('posts.destory',['post' => $post['id']])}}">
+            @method("DELETE")
+            @csrf
+            <button onclick="return confirm('are you sure?')" class="btn btn-danger">Delete</button>
+          </form>
         </span>
       </td>
     </tr>
     @endforeach
   </tbody>
 </table>
+<div class="text-dark">
 {{ $allPosts->links() }}
+    </div>
 @endsection

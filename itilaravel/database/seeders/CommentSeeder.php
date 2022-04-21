@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use Database\Factories\UserFactory;
+use Database\Factories\PostFactory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class UserSeeder extends Seeder
+class CommentSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,6 +16,6 @@ class UserSeeder extends Seeder
     public function run()
     {
         //
-        UserFactory::times(500)->create();
+        PostFactory::times(500)->create();
     }
 }
