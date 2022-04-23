@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('title'); //== varchar column
             $table->text('description'); //== text column
+            $table->string('slug',50);
             $table->unsignedBigInteger('user_id')->nullable;
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
