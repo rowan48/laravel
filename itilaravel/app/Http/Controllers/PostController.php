@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Jobs;
+use App\Jobs\PruneOldPostsJob;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Comment;
@@ -29,8 +30,15 @@ use Illuminate\Support\Facades\DB;
 class PostController extends Controller
 {
     public $posts = [];
+    
+    public function job(){
+
+
+
+    }
     public function index()
     {
+        PruneOldPostsJob::dispatch();
         $posts = Post::all();
         $posts = Post::paginate(15);
         return view(
