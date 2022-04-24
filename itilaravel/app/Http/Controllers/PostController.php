@@ -11,6 +11,8 @@ use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Builder;
+
 
 /**
  * Store a new blog post.
@@ -24,7 +26,7 @@ class PostController extends Controller
     public function index()
     {
         PruneOldPostsJob::dispatch();
-        $posts = Post::all();
+        $posts = Post::with('comments')->get();
         $posts = Post::paginate(15);
         return view(
             'posts.index',
