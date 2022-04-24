@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController; //== require
 use App\Http\Controllers\CommentController; //== require
 use Illuminate\Support\Facades\Auth;
-use App\Jobs\PruneOldPostsJob;
 
 
 
