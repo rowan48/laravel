@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController; //== require
 use App\Http\Controllers\CommentController; //== require
 use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
+
 
 
 
@@ -28,6 +30,18 @@ Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('posts.e
 Route::delete('/posts/delete/{post}', [PostController::class, 'destory'])->name('posts.destory')->middleware('auth');
 Route::post('/posts/{post}/comments', [CommentController::class, 'comment'])->name('posts.comment')->middleware('auth');
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show')->middleware('auth');
+
+
+ 
+Route::get('/auth/redirect', function () {
+    return Socialite::driver('github')->redirect();
+})->name('github.auth');
+ 
+Route::get('/auth/callback', function () {
+    $user = Socialite::driver('github')->user();
+ 
+    // $user->token
+});
 
 
 
