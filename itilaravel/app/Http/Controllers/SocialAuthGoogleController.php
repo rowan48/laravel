@@ -1,31 +1,26 @@
+
 <?php
 
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Laravel\Socialite\Facades\Socialite;
-use App\Models\Post;
-use App\Models\User;
-
+use App\User;
+use Socialite;
 use Auth;
 use Exception;
-// use Socialite;
 
 
 
-class GoogleController extends Controller
+class SocialAuthGoogleController extends Controller
 {
-   
     public function redirect()
     {
-        // dd('redirect');
-        // dd(Socialite::driver('google')->redirect());
         return Socialite::driver('google')->redirect();
     }
+
+
     public function callback()
     {
-        dd('cll');
-
         try {
             
         
@@ -45,7 +40,7 @@ class GoogleController extends Controller
                 $user->save();
                 Auth::loginUsingId($user->id);
             }
-            return redirect()->to('posts.index');
+            return redirect()->to('/home');
         } 
         catch (Exception $e) {
             return 'error';

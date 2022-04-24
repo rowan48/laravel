@@ -47,12 +47,20 @@ Route::get('/auth/callback', function () {
 });
 Auth::routes();
 
-Route::get('redirect/google', function () {
-    return Socialite::driver('google')->redirect();
-})->name('login.provider');
+// Route::get('/redirect', 'GoogleController@redirect');
+Route::get('/redirect', [GoogleController::class, 'redirect'])->name('redirect');
+
+// Route::get('/callback', 'GoogleController@callback');
+Route::get('/callback', [GoogleController::class, 'callback'])->name('callback');
+
+
+
+// Route::get('redirect/google', function () {
+//     return Socialite::driver('google')->redirect();
+// })->name('login.provider');
  
-Route::get('/auth/google/callback', function () {
-    $user = Socialite::driver('google')->user();
+// Route::get('/auth/google/callback', function () {
+//     $user = Socialite::driver('google')->user();
  
-});
+// });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
