@@ -5,6 +5,11 @@ use App\Http\Controllers\PostController; //== require
 use App\Http\Controllers\CommentController; //== require
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
+use App\Http\Controllers\GoogleController; //== require
+use App\Http\Controllers;
+
+
+// use App\Http\Controllers\Auth;
 
 
 
@@ -39,15 +44,15 @@ Route::get('/auth/redirect', function () {
  
 Route::get('/auth/callback', function () {
     $user = Socialite::driver('github')->user();
- 
-    // $user->token
 });
-
-
-
-
-
-
 Auth::routes();
 
+Route::get('redirect/google', function () {
+    return Socialite::driver('google')->redirect();
+})->name('login.provider');
+ 
+Route::get('/auth/google/callback', function () {
+    $user = Socialite::driver('google')->user();
+ 
+});
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
