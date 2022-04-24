@@ -30,10 +30,7 @@ class PostController extends Controller
     }
     public function store(StorePostRequest $request)
     {
-        // $path = $request->file('image')->store('images');
         $data = request()->all();
-        dd($data);
-
        $post= Post::create([
             'title' => $data['title'],
             'description' => $data['description'],
