@@ -19,7 +19,8 @@ class Post extends Model
         'description',
         'user_id',
         'created_by',
-        
+        'path'
+
     ];
 
 
@@ -36,10 +37,8 @@ class Post extends Model
     {
         return [
             'slug' => [
-                'source' => ['title', 'id']           
-                 ]
+                'source' => ['title', 'id']
+            ]
         ];
     }
-
-
 }

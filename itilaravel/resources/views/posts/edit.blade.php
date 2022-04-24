@@ -4,15 +4,15 @@ post
 
 @section('content')
 @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-<form method="post" action="{{route('posts.update',['posts'=>$post['id']])}}">
+<div class="alert alert-danger">
+  <ul>
+    @foreach ($errors->all() as $error)
+    <li>{{ $error }}</li>
+    @endforeach
+  </ul>
+</div>
+@endif
+<form method="post" action="{{route('posts.update',['posts'=>$post['id']])}}" enctype="multipart/form-data">
   @csrf
   @method('put')
   <div class="mb-3">
@@ -32,7 +32,14 @@ post
       @endforeach
     </select>
   </div>
-
+  <div class="form-group">
+    <label for="exampleInputEmail1">Update Image</label>
+    <input type="file" id="image" name="image" class="@error('image') is-invalid @enderror form-control">
+    @error('image')
+    <div class="alert alert-danger mt-1 mb-1">{{ $message }}
+    </div>
+    @enderror
+  </div>
   <div class="mb-3">
     <button type="submit" class="btn btn-success">Edit Post</button>
   </div>

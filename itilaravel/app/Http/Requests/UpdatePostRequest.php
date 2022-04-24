@@ -26,9 +26,10 @@ class UpdatePostRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'title' => ['required',Rule::unique('posts','title')->ignore($this->posts)],
-            'title' => ['required', 'min:3','unique:App\Models\Post,title,'.$this->posts],
+            'title' => ['required', 'min:3', 'unique:App\Models\Post,title,' . $this->posts],
             'description' => ['required', 'min:10'],
+            'image' => 'image|mimes:jpg,png|max:2048',
+
 
         ];
     }
@@ -37,9 +38,8 @@ class UpdatePostRequest extends FormRequest
     public function messages()
     {
         return [
-            'title.required' => 'Title must be at least 3 charachters',
+            'title.required' => 'Title must be at least 3 charachter',
             'description.min' => 'description must ba at least 10 charachters'
         ];
     }
-
 }
