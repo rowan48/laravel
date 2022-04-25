@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\GoogleController; //== require
 use App\Http\Controllers;
+use App\Models\User; 
 
 
 // use App\Http\Controllers\Auth;
@@ -25,8 +26,8 @@ use App\Http\Controllers;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/',[PostController::class,'index'])->name('posts.index')->middleware('auth');
-Route::get('/posts',[PostController::class,'index'])->name('posts.index')->middleware('auth');
+Route::get('/',[PostController::class,'index'])->name('posts.index');
+Route::get('/posts',[PostController::class,'index']);
 Route::get('/posts/create/', [PostController::class, 'create'])->name('posts.create')->middleware('auth');
 Route::post('/posts/create', [PostController::class, 'store'])->name('posts.store')->middleware('auth');
 Route::post('/posts/{post}/comment', [CommentController::class, 'comment'])->name('posts.comment')->middleware('auth');
@@ -36,31 +37,36 @@ Route::delete('/posts/delete/{post}', [PostController::class, 'destory'])->name(
 Route::post('/posts/{post}/comments', [CommentController::class, 'comment'])->name('posts.comment')->middleware('auth');
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show')->middleware('auth');
 
+Auth::routes();
 
  
 Route::get('/auth/redirect', function () {
     return Socialite::driver('github')->redirect();
 })->name('github.auth');
  
+
 Route::get('/auth/callback', function () {
-    $user = Socialite::driver('github')->user();
+    $githubUser = Socialite::driver('github')->stateless()->user();
+    $user = User::where('github_id', $githubUser->id)->first();
+    if ($user) {
+        $user->update([
+            'github_token' => $githubUser->token,
+            'github_refresh_token' => $githubUser->refreshToken,
+        ]);
+    } else {
+        $user = User::create([
+            'name' => $githubUser->name,
+            'email' => $githubUser->email,
+            'password'=>rand(1,5000),
+            'github_id' => $githubUser->id,
+            'github_token' => $githubUser->token,
+            'github_refresh_token' => $githubUser->refreshToken,
+        ]);
+    }
+    return to_route("posts.index");
 });
-Auth::routes();
-
-// Route::get('/redirect', 'GoogleController@redirect');
 Route::get('/redirect', [GoogleController::class, 'redirect'])->name('redirect');
-
-// Route::get('/callback', 'GoogleController@callback');
 Route::get('/callback', [GoogleController::class, 'callback'])->name('callback');
-
-
-
-// Route::get('redirect/google', function () {
-//     return Socialite::driver('google')->redirect();
-// })->name('login.provider');
- 
-// Route::get('/auth/google/callback', function () {
-//     $user = Socialite::driver('google')->user();
- 
-// });
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', function () {
+    return to_route("posts.index");
+})->name('home');

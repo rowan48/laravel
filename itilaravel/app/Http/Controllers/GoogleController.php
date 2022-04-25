@@ -18,21 +18,14 @@ class GoogleController extends Controller
    
     public function redirect()
     {
-        // dd('redirect');
-        // dd(Socialite::driver('google')->redirect());
         return Socialite::driver('google')->redirect();
     }
     public function callback()
     {
-        dd('cll');
-
-        try {
-            
-        
+        try {   
             $googleUser = Socialite::driver('google')->user();
             $existUser = User::where('email',$googleUser->email)->first();
-            
-
+            dd($existUser);
             if($existUser) {
                 Auth::loginUsingId($existUser->id);
             }
